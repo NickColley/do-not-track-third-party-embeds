@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>‘Do Not Track’ (DNT) with Third-party Embeds</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="/dnt-embed.css">
+    <link rel="stylesheet" href="/style.css">
+    
+    <script src="/script.js" defer></script>
+    <script src="/dnt-embed.js" defer></script>
+  </head>  
+  <body>
+    <h1>‘Do Not Track’ (DNT) with Third-party Embeds 🕵️🔎</h1>
+    <p>
+      Browsers have the ability to let users opt-out of tracking across all sites they visit with <a href="https://www.eff.org/issues/do-not-track">‘Do Not Track’</a>
+    </p>
+    <p>
+      One way you can respect ‘Do Not Track’ on your own site is by avoiding loading analytics or ad tracking when ‘Do Not Track’ is enabled.
+      <br>
+      However if you are embedding content from a third-party, you have no control over how they track your users.
+    </p>
+    <p>
+      YouTube is a good example, where users will be tracked via advertising.
+    </p>
+    <p>
+      Inspired by <a href="https://medium.com/policy/how-we-handle-do-not-track-requests-on-medium-f2b4b4fb7c5e">Medium.com</a>, this component allows you to wrap any iFrame and only load it if the user has actively consented.
+    </p>
+    <p>
+      To see this in action you'll need to <a href="https://allaboutdnt.com/">enable ‘Do Not Track’</a> in your browser, or I've allowed you to simulate what it'd look like.
+    </p>
+    
+    <p>
+      <strong>
+        <span class="js-dnt-disabled" hidden>
+          🔓 You have ‘Do Not Track’ disabled:
+          <a href="/?force=dnt" hidden>Simulate ‘Do Not Track’</a>
+        </span>
+        <span class="js-dnt-enabled" hidden>
+          🔒 You have ‘Do Not Track’ enabled
+        </span>
+        <span class="js-dnt-forced" hidden>
+          ✨ You are simulating ‘Do Not Track’ on for this demo:
+          <a href="/" hidden>Disable simulated ‘Do Not Track’</a>
+        </span>
+      </strong>
+    </p>
+    <h2>
+      Examples
+    </h2>
+    
+    <h3>
+      YouTube
+    </h3>
+    
+    <div class="aspectratio aspectratio--ratio-16-9">
+       <iframe
+        data-dnt-embed
+        data-src="https://www.youtube.com/embed/5530I_pYjbo"
+        title="How I Trained My Cats"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+      <noscript>
+        If JavaScript fails, serve up a standard iFrame
+        <iframe
+          src="https://www.youtube.com/embed/5530I_pYjbo"
+          title="How I Trained My Cats"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </noscript>
+    </div>
+
+    <h2>
+      How to use
+    </h2>
+    
+    <p>
+      The code is based around adding a <code>data-dnt-embed</code> attribute 
+      to a standard iframe.
+      
+      Then to make sure the iframe does not request it's source, we change the <code>src</code> attribute to <code>data-src</code>.
+      This allows us to only load when the user has given consent.
+    </p>
+    
+    <h3>
+      Markup
+    </h3>
+    
+<pre><code>&lt;iframe
+  data-dnt-embed
+  data-src=&quot;https://www.youtube.com/embed/5530I_pYjbo&quot;
+  title=&quot;How I Trained My Cats YouTube Video&quot;
+  frameborder=&quot;0&quot;
+  allowfullscreen
+&gt;&lt;/iframe&gt;
+&lt;noscript&gt;
+  &lt;!-- If JavaScript fails, serve up a standard iFrame --&gt;
+  &lt;iframe
+    src=&quot;https://www.youtube.com/embed/5530I_pYjbo&quot;
+    title=&quot;How I Trained My Cats YouTube Video&quot;
+    frameborder=&quot;0&quot;
+    allowfullscreen
+  &gt;&lt;/iframe&gt;
+&lt;/noscript&gt;</code></pre>
+    
+    <h3>
+      JavaScript
+    </h3>
+    <p>
+      <a href="https://glitch.com/edit/#!/do-not-track-iframe-wrapper?path=dnt-embed.js">dnt-embed.js</a>
+      (~1kb gzipped)
+    </p>
+  
+    <h3>
+      CSS
+    </h3>
+    <p>
+      <a href="https://glitch.com/edit/#!/do-not-track-iframe-wrapper?path=dnt-embed.css">dnt-embed.css</a>
+    </p>
+
+    <h2>
+      Features
+    </h2>
+    
+    <ul>
+      <li>Browser support: IE9+ (I need to do extensive testing, see below)</li>
+      <li>Writen to be accessible (but like above, needs testing before this is confirmed)</li>
+      <li>Works when JavaScript fails</li>
+      <li>YouTube embed only: Thumbnails</li>
+      <li>YouTube embed only: <a href="https://support.google.com/youtube/answer/171780?hl=en">Privacy mode</a></li>
+      <li>Show's loading indication for slow connections</li>
+
+    </ul>
+    
+    <h2>
+      To do - Status: Do not use in production.
+    </h2>
+    
+    <ul>
+      <li>Cross browser testing.</li>
+      <li>Accessibility - Assistive technology testing.</li>
+      <li>Usability - Is it clear enough what the content is? Or do iframes normally use context to help?</li>
+      <li>Refactor: JavaScript and CSS code is scrappy and prototypy</li>
+      <li>Allow you to change the content explaining DNT.</li>
+      <li>Try making this into a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements">custom element</a></li>
+    </ul>
+    
+    <h2>
+      Other examples
+    </h2>
+    
+    <h3>
+      Medium.com
+    </h3>
+    
+    <img src="https://cdn.glitch.com/45ff9d3c-c4b6-48c3-9995-cdd5bf975dd6%2Fmedium-com-privacy-embed.png?1527460258303" alt="Screenshot of Medium.com's privacy embed"/>
+    
+    <h3>
+      DuckDuckGo
+    </h3>
+    
+    <img src="https://cdn.glitch.com/45ff9d3c-c4b6-48c3-9995-cdd5bf975dd6%2Fduckduckgo-privacy-embed.png?1527460258107" alt="Screenshot of duckduckgo's privacy embed"/>
+    
+    <h2>
+      Resources
+    </h2>
+    <ul>
+      <li>
+        <a href="https://medium.com/s/the-grind/what-nokia-phones-and-a-german-soccer-team-have-in-common-5e2bfd0fe92e">Medium article with an Embed</a>  
+      </li>
+      <li>
+        <a href="https://medium.com/policy/how-we-handle-do-not-track-requests-on-medium-f2b4b4fb7c5e">Medium's take on handling DoNotTrack</a>
+      </li>
+      <li>
+        <a href="http://davidmacd.com/blog/is-title-attribute-on-iframe-required-by-wcag.html">iFrame accessible names</a>
+      </li>
+      <li>
+        <a href="https://github.com/EFForg/dnt-guide">EFF: How to Implement DNT</a>
+      </li>
+      <li>
+        <a href="https://duckduckgo.com/?q=do+not+track&atb=v116-1_b&iax=videos&ia=videos&iai=YNNulgHYAbo">Example of DuckDuckGo's privacy embed</a>
+      </li>
+    </ul>
+
+
+    <a href="https://glitch.com/~do-not-track-third-party-embeds">
+      View Source or Remix this in Glitch
+    </a>
+  </body>
+</html>

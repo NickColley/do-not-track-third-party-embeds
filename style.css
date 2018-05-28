@@ -1,0 +1,91 @@
+html {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #111;
+  background: #FEFEFE;
+}
+
+body {
+  max-width: 66ch;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+:focus {
+  outline: 3px solid orange;
+}
+
+pre,
+ul,
+p {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+ul {
+  padding-left: 1em;
+}
+
+h1, h2, h3 {
+  margin-top: 0;
+  margin-bottom: .5em;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+pre, code {
+  background: #111;
+  color: #FEFEFE;
+}
+
+code {
+  padding-left: .4rem;
+  padding-right: .4rem;
+}
+
+pre > code {
+  display: block;
+  width: 100%;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+pre {
+  overflow-x: scroll;
+}
+
+img {
+  max-width: 100%;
+  margin-bottom: 2rem;
+}
+
+.aspectratio {
+  position: relative;
+  height: 0;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.aspectratio--ratio-16-9 {
+  padding-top: 56.25%;
+}
+
+.aspectratio--ratio-4-3 {
+  padding-top: 75%;
+}
+
+.aspectratio > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
